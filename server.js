@@ -18,7 +18,7 @@ var articles={
 </p>`
 },
 'article-two':{
-  title:'Article two i am kunal kothari';
+  title:'Article two i am kunal kothari',
   heading:'Article Two',
   date:'Aug 7 2017',
   content:`<p>
@@ -31,7 +31,7 @@ var articles={
 
    'article-three':{
 title:'Article third i am kunal kothari',
-  heading:'Article Third''
+  heading:'Article Third',
   date:'Aug 10 2017',
   content:`<p>
    this is the content for my third article.this is the content of my third article.</p>
@@ -39,6 +39,7 @@ title:'Article third i am kunal kothari',
 <p>this is the content of my third article .this is the content of my third article.</p>
 <p>this is the content of my third article.
 </p>`
+}
 };
 function createTemplate (data) {
   var title=data.title;
@@ -77,7 +78,7 @@ var htmlTemplate=`<!DOCTYPE html>
 </html>
 `;
   return htmlTemplate;
-},
+}`
 };
 
 app.get('/', function (req, res) {
