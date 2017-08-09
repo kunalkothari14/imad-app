@@ -5,9 +5,91 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articles={
+'article-one':{
+  title:'Article one i am kunal kothari',
+  heading:'Article One',
+  date:'Aug 7 2017',
+  content:`<p>
+   this is the content for my first   article.this is the content of my first article.</p>
+     
+<p>this is the content of my first article .this is the content of my first article.</p>
+<p>this is the content of my first article.
+</p>`
+},
+'article-two':{
+  title:'Article two i am kunal kothari',
+  heading:'Article Two',
+  date:'Aug 7 2017',
+  content:`<p>
+   this is the content for my second article.this is the content of my second article.</p>
+     
+<p>this is the content of my second article .this is the content of my second article.</p>
+<p>this is the content of my second article.
+</p>`
+},
+
+   'article-three':{
+title:'Article third i am kunal kothari',
+  heading:'Article Third',
+  date:'Aug 10 2017',
+  content:`<p>
+   this is the content for my third article.this is the content of my third article.</p>
+     
+<p>this is the content of my third article .this is the content of my third article.</p>
+<p>this is the content of my third article.
+</p>`
+}
+};
+function createTemplate (data) {
+  var title=data.title;
+  var date=data.date;
+  var heading=data.heading;
+  var content=data.content;
+var htmlTemplate=`<!DOCTYPE html>
+    <head>
+         <link href="/ui/style.css" rel="stylesheet" />
+        <title>
+           ${title}
+        </title>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+       
+ </head>
+    <body>
+      <div class="container">
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <hr/>
+        <h3>
+           ${heading}
+        </h3>
+        <div>
+            ${date}
+        </div>
+         ${content}
+        </div>
+   
+    </body>
+    
+    
+    
+    
+</html>
+  return htmlTemplate;
+}
+}`;
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+app.get('/articleName',function(req,res){
+  // article name--article-one
+  // articles[articleName]--{}content object for article -one
+var articleName = req.params.articleName;
+     res.send(createTemplate(articles[articleName]));
 });
 
 
