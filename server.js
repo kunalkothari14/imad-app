@@ -76,9 +76,9 @@ var htmlTemplate=`<!DOCTYPE html>
     
     
 </html>
+`;
   return htmlTemplate;
 }
-}`;
 
 
 app.get('/', function (req, res) {
