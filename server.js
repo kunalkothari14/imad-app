@@ -92,9 +92,9 @@ app.get('/counter', function (req, res) {
 });
 
 var names=[];
- //get name from the request
-  //extract name
-  app.get('/submit-name/:name,',function(req,res){
+ //get name from the request.
+  //extract name.
+  app.get('/submit-name/:name',function(req,res){
       var name =req.params.name;
        names.push(name);
      res.send(JSON.stringify(names));
