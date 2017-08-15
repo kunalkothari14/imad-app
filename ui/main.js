@@ -41,7 +41,15 @@ var name = nameInput.value;
 var submit=document.getElementById('submit_btn');
 submit.onclick=function(){
     //make request to server and send the name.
+    button.onclick=function(){
+    //create a request 
+    var request=new XMLHttpRequest();
     
+    //capture the response and store it in a variable
+    request.onreadystatechange=function () {
+        if(request.readyState===XMLHttpRequest.DONE){
+            //take some action
+            if(request.status===200){
     //capture a list of namres and render it as a list.
     
     var names = ['name1','name2','name3','name4'];
@@ -51,9 +59,13 @@ submit.onclick=function(){
     }
     var ul=document.getElementById('namelist');
     ul.innerHTML = list;
+}
+}
 };
 
-
+ request.open('GET','http://kotharikunal1996.imad.hasura-app.io/submit-name?name='+,true);
+    request.send(null);
+};
 
 
 
