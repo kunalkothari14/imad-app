@@ -40,7 +40,7 @@ button.onclick=function(){
 var submit=document.getElementById('submit_btn');
 submit.onclick=function(){
     //make request to server and send the name.
-    button.onclick=function(){
+   
     //create a request 
     var request=new XMLHttpRequest();
     
@@ -66,7 +66,7 @@ var nameInput=document.getElementById('name');
 var name = nameInput.value;
  request.open('GET','http://kotharikunal1996.imad.hasura-app.io/submit-name?name='+name,true);
     request.send(null);
-};
+
 };
 
 
