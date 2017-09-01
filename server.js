@@ -93,7 +93,7 @@ var pool=new Pool(config);
 app.get('/test-db',function(req,res){
     //make a select query
     //return a response with results
-    pool.query('SELECT * FROM user',function(err,result)
+    pool.query('SELECT * FROM public',function(err,result)
     {
         if (err){
             res.status(500).send(err.toString());
