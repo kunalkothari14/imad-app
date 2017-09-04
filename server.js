@@ -93,7 +93,7 @@ var names=[];
 });
 
 
-
+var pool=new Pool(config);
 app.get('/articless/:articleName',function(req,res){
   // article name--article-one
   // articles[articleName]--{}content object for article -one
