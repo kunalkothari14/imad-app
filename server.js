@@ -14,42 +14,7 @@ var config ={
 var app = express();
 app.use(morgan('combined'));
 
-var articles={
-'article-one':{
-  title:'Article one i am kunal kothari',
-  heading:'Article One',
-  date:'Aug 7 2017',
-  content:`<p>
-   this is the content for my first   article.this is the content of my first article.</p>
-     
-<p>this is the content of my first article .this is the content of my first article.</p>
-<p>this is the content of my first article.
-</p>`
-},
-'article-two':{
-  title:'Article two i am kunal kothari',
-  heading:'Article Two',
-  date:'Aug 7 2017',
-  content:`<p>
-   this is the content for my second article.this is the content of my second article.</p>
-     
-<p>this is the content of my second article .this is the content of my second article.</p>
-<p>this is the content of my second article.
-</p>`
-},
 
-   'article-three':{
-title:'Article third i am kunal kothari',
-  heading:'Article Third',
-  date:'Aug 10 2017',
-  content:`<p>
-   this is the content for my third article.this is the content of my third article.</p>
-     
-<p>this is the content of my third article .this is the content of my third article.</p>
-<p>this is the content of my third article.
-</p>`
-}
-};
 function createTemplate (data) {
   var title=data.title;
   var date=data.date;
@@ -74,7 +39,7 @@ var htmlTemplate=`<!DOCTYPE html>
            ${heading}
         </h3>
         <div>
-            ${date}
+            ${date.toDateString()}
         </div>
          ${content}
         </div>
@@ -103,6 +68,9 @@ app.get('/test-db',function(req,res){
         }
     });
 });
+
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -126,11 +94,24 @@ var names=[];
 
 
 
-app.get('/:articleName',function(req,res){
+app.get('/articles/:articleName',function(req,res){
   // article name--article-one
   // articles[articleName]--{}content object for article -one
-var articleName = req.params.articleName;
-     res.send(createTemplate(articles[articleName]));
+   pool.query('SELECT * FROM article title =$',[req.params.articleName],function(err,result)
+    {
+        if (err){
+            res.status(500).send(err.toString());
+            
+        }else{
+            if(result.rows.lenght===0){
+                res.status(400).send('Article not found');
+            }else{
+                var articleData = result.rows[0];
+                res.send(createTemplate(articleData));
+                
+            }
+}
+    });
 });
 
 
