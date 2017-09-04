@@ -97,7 +97,7 @@ var pool=new Pool();
 app.get('/articles/:articleName',function(req,res){
   // article name--article-one
   // articles[articleName]--{}content object for article -one
-   pool.query('SELECT * FROM articless title =$',[req.params.articleName],function(err,result)
+   pool.query('SELECT * FROM " articless" title =$1',[req.params.articleName],function(err,result)
     {
         if (err){
             res.status(500).send(err.toString());
